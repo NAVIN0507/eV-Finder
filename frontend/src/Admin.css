@@ -1,0 +1,184 @@
+/* Import Inter font from Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: #222; */
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.admin-admin-container {
+  width: 100vw;  
+  height: 100vh;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;  
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #000;
+}
+
+input[type="date"] {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-top: 10px;  
+}
+
+.profile-icon i {
+  font-size: 2rem;
+  color: #5eaaa8;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+thead th {
+  background-color: #209653;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.success-icon {
+  color: green;
+  font-size: 1.5rem;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.danger-icon {
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.accepted {
+  color: green;
+  font-weight: 500;
+}
+
+.declined {
+  color: red;
+  font-weight: 500;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.btn {
+  background-color: #209653;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: #1b7c42;
+}
+
+.page-info {
+  font-weight: 400;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .admin-container {
+    width: 95%;  /* Expand on smaller devices */
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;  /* Stack elements */
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  input[type="date"] {
+    width: 100%;  
+    margin-bottom: 10px;
+  }
+
+  table {
+    display: block;  
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  thead th, tbody td {
+    padding: 8px;
+  }
+
+  .success-icon, .danger-icon {
+    font-size: 1.2rem;
+  }
+
+  .pagination {
+    flex-direction: row;  /* Stack pagination elements */
+    align-items: center;
+  }
+
+  .btn {
+    width: 20%;  /* Full width buttons */
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  input[type="date"] {
+    padding: 6px;
+  }
+
+  .btn {
+    padding: 8px 15px;
+  }
+
+  .profile-icon i {
+    font-size: 1.5rem;
+  }
+}
