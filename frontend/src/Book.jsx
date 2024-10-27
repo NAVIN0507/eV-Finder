@@ -5,7 +5,8 @@ import car from "./assets/car.png";
 import Navbar from "./Navbar";
 
 const Book = () => {
-  const { name, setName, staffId, setStaffId, source, setSource, destination, setDestination,
+  const { 
+        name, setName, staffId, setStaffId, source, setSource, destination, setDestination,
         reason, setReason, setBookings,notification, setNotification,
         fname,setFname,fmail,setFmail,time,setTime,date,setDate
         } = useContext(BookingContext);
@@ -98,6 +99,7 @@ const Book = () => {
     console.log("New bookings ==")
     console.log(newBooking);
    console.log("\n");
+
     const response = await fetch('http://localhost:5000/api/bookings', {
       method: 'POST',
       headers: {

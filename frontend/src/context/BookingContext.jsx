@@ -6,8 +6,8 @@ export const BookingContext = createContext();
 export const BookingProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [staffId, setStaffId] = useState('');
-  const [source, setSource] = useState('');
-  const [destination, setDestination] = useState('');
+  const [source, setSource] = useState('Gate-A');
+  const [destination, setDestination] = useState('Gate-A');
   const [reason, setReason] = useState('');
   const [bookings, setBookings] = useState([]);
   const [isModalOpen, setModalOpen] = useState(true);
@@ -16,6 +16,8 @@ export const BookingProvider = ({ children }) => {
   const [fmail,setFmail]=useState('');
   const [time,setTime]=useState('');
   const [date,setDate] =useState('');
+  const [history,setHistory]=useState('');
+  
   const fetchBookings = async () => {
     const response = await fetch('http://localhost:5000/api/bookings');
     const data = await response.json();
@@ -41,7 +43,8 @@ export const BookingProvider = ({ children }) => {
         isModalOpen,setModalOpen,
         notification,setNotification,
         fname,setFname,
-        fmail,setFmail
+        fmail,setFmail,
+        history,setHistory,
       }}
     >
       {children}

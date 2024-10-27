@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './Admin.css';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+// import { set } from 'mongoose';
 
 const Admin = () => {
   const [bookings, setBookings] = useState([]);
-
+  const[date,setDate]=useState(null);
   // Fetch data from the database
   useEffect(() => {
-    fetch('http://localhost:5000/api/bookings')
-      .then((response) => response.json())
-      .then((data) => setBookings(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/getBookingsByDate?date=${date}`);
+        const data = await response.json();
+        setBookings(data.reverse());
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchBookings();
+  }, [date]);
+
 
   // Update booking status
   const updateStatus = async (id, newStatus) => {
@@ -43,7 +52,17 @@ const Admin = () => {
     <div className="admin-container">
       <div className="header">
         <h1 className="title">eV-finder</h1>
-        <input type="date" defaultValue="2024-10-08" />
+        <input 
+          type="date" 
+          defaultValue={new Date().toISOString().split("T")[0]} 
+          onChange={(e) => {
+            const [year, month, day] = e.target.value.split("-");
+            const formattedDate = `${day}-${month}-${year}`;
+            setDate(formattedDate);
+            console.log(formattedDate); // Logs in DD-MM-YYYY format
+          }} 
+        />
+
         <div className="profile-icon">
           <i className="fas fa-user-circle"></i>
         </div>
@@ -62,34 +81,43 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, index) => (
-              <tr key={booking._id}>
+    {bookings.length > 0 ? (
+        bookings.map((booking, index) => (
+            <tr key={booking._id}>
                 <td>{index + 1}</td>
                 <td>{booking.name}<br />({booking.staffId}) </td>
                 <td>{booking.date}<br />{booking.time} </td>
                 <td>{booking.source}</td>
                 <td>{booking.destination}</td>
                 <td>
-                  {booking.status === 'Pending' ? (
-                    <>
-                      <FaCheckCircle
-                        className="success-icon"
-                        onClick={() => updateStatus(booking._id, 'Accepted')}
-                      />
-                      <FaTimesCircle
-                        className="danger-icon"
-                        onClick={() => updateStatus(booking._id, 'Declined')}
-                      />
-                    </>
-                  ) : (
-                    <span className={booking.status.toLowerCase()}>
-                      {booking.status}
-                    </span>
-                  )}
+                    {booking.status === 'Pending' ? (
+                        <>
+                            <FaCheckCircle
+                                className="success-icon"
+                                onClick={() => updateStatus(booking._id, 'Accepted')}
+                            />
+                            <FaTimesCircle
+                                className="danger-icon"
+                                onClick={() => updateStatus(booking._id, 'Declined')}
+                            />
+                        </>
+                    ) : (
+                        <span className={booking.status.toLowerCase()}>
+                            {booking.status}
+                        </span>
+                    )}
                 </td>
-              </tr>
-            ))}
-          </tbody>
+            </tr>
+        ))
+    ) : (
+        <tr>
+            <td colSpan="6" style={{ textAlign: 'center' }}>
+                No booking request
+            </td>
+        </tr>
+    )}
+</tbody>
+
         </table>
       </div>
 

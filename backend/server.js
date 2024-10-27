@@ -115,19 +115,6 @@ app.get('/auth/user', (req, res) => {
 });
 
 // Booking Routes
-// app.post('/api/bookings', async (req, res) => {
-//   try {
-//     console.log(req.body);
-//     console.log(req.user);
-//     // Use the user's email from the session (provided by Google OAuth)
-//     const booking = new Booking({ ...req.body});
-//     console.log("BOoking",booking);
-//     await booking.save();
-//     res.status(201).json(booking);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
 
 
 app.post('/api/bookings', async (req, res) => {
@@ -157,13 +144,48 @@ app.post('/api/bookings', async (req, res) => {
 
 app.get('/api/bookings', async (req, res) => {
   try {
-    // Fetch bookings by the user's email
-    const bookings = await Booking.find();
+    
+    const bookings = await Booking.find({});
     res.status(200).json(bookings);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
+
+app.get('/api/getBookingsByDate', async (req, res) => {
+  try {
+      const { date } = req.query; // Extract date from query parameters
+
+      // Find bookings based on the provided date or return all if no date is specified
+      const bookings = date
+          ? await Booking.find({ date }) // Filters by the date if provided
+          : await Booking.find({}); // Returns all bookings if no date is given
+
+      res.status(200).json(bookings); // Respond with the bookings data
+  } catch (error) {
+      res.status(500).json({ error: error.message }); // Handle any errors
+  }
+});
+
+app.post('/api/history', async (req, res) => {
+  try {
+    const { fmail } = req.body; // Get the email from the request body
+
+    if (!fmail) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    // Fetch bookings by email
+    const bookings = await Booking.find({ email: fmail }); // assuming 'email' is the field storing user emails
+
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+
 app.put('/api/bookings/:id', async (req, res) => {
   try {
     const { id } = req.params;
