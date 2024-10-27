@@ -8,7 +8,7 @@ const Book = () => {
   const { 
         name, setName, staffId, setStaffId, source, setSource, destination, setDestination,
         reason, setReason, setBookings,notification, setNotification,
-        fname,setFname,fmail,setFmail,time,setTime,date,setDate
+        fname,setFname,fmail,setFmail,time,setTime,date,setDate,photo,setPhoto  
         } = useContext(BookingContext);
   
   // State for notification
@@ -21,7 +21,9 @@ const Book = () => {
       if (response.ok) {
         setFname(data.name); // Set the user's name from the backend
         setFmail(data.email); // Use email as staffId (or adjust based on your requirement)
-        console.log(fname,fmail);
+        setPhoto(data.photo);
+
+        console.log(fname,fmail,photo);
       }
       else if (response.status === 401) {
         // Redirect to login page or home page if unauthorized

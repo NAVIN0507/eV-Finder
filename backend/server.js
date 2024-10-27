@@ -77,6 +77,7 @@ passport.use(new GoogleStrategy({
   const user = {
     name: profile.displayName,
     email: email, // Set the email for the user
+    photo: profile.photos[0]?.value || null
   };
   console.log(user);
   done(null, user); // Pass user to serialization step
@@ -110,7 +111,7 @@ app.get('/auth/user', (req, res) => {
   if (req.isAuthenticated()) {
     res.json(req.user);
   } else {
-    res.status(401).json({ error: 'Unauthorized' });
+    res.redirect('http://localhost:3000');
   }
 });
 

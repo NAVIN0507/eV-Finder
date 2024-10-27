@@ -16,6 +16,7 @@ export const BookingProvider = ({ children }) => {
   const [fmail,setFmail]=useState('');
   const [time,setTime]=useState('');
   const [date,setDate] =useState('');
+  const [photo,setPhoto] =useState('');
   const [history,setHistory]=useState('');
   
   const fetchBookings = async () => {
@@ -45,6 +46,7 @@ export const BookingProvider = ({ children }) => {
         fname,setFname,
         fmail,setFmail,
         history,setHistory,
+        photo,setPhoto
       }}
     >
       {children}
