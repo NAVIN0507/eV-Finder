@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { BsPersonCircle } from "react-icons/bs";
+// import { BsPersonCircle } from "react-icons/bs";
 import { FaHistory } from "react-icons/fa";
 import './Navbar.css';
 import { BookingContext } from './context/BookingContext';
