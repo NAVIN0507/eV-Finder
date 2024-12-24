@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from your frontend
+  origin: `${process.env.FRONTEND_URL}`, // Allow requests from your frontend
   credentials: true, // Allow credentials (like cookies) to be sent
 }));
 
@@ -100,10 +100,10 @@ app.get('/auth/google', passport.authenticate('google', {
 
 // Google OAuth callback route
 app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: 'http://localhost:3000/ ',
+  failureRedirect: `${process.env.FRONTEND_URL}`,
 }), (req, res) => {
   // Successful authentication, redirect to your app's booking page.
-  res.redirect('http://localhost:3000/book');
+  res.redirect(`${process.env.FRONTEND_URL}/book`);
 });
 
 // Route to get authenticated user info
@@ -111,7 +111,7 @@ app.get('/auth/user', (req, res) => {
   if (req.isAuthenticated()) {
     res.json(req.user);
   } else {
-    res.redirect('http://localhost:3000');
+    res.redirect(`${process.env.FRONTEND_URL}`);
   }
 });
 
