@@ -14,7 +14,7 @@ const Admin = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/getBookingsByDate?date=${date}`);
+        const response = await fetch(`http://localhost:5000/api/bookings?date=${date}`);
         const data = await response.json();
         setBookings(data.reverse());
       } catch (error) {

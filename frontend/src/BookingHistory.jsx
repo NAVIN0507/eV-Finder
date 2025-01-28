@@ -11,7 +11,7 @@ const BookingHistory = () => {
         // Fetch bookings filtered by email from backend
         const fetchBookings = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/history', {
+                const response = await fetch('http://localhost:5000/api/bookings/history', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
