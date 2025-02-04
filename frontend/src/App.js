@@ -2,10 +2,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { BookingProvider } from './context/BookingContext'; // Ensure the path is correct
-import Login from './Login';
-import Book from './Book';
-import Admin from './Admin';
-import BookingHistory from './BookingHistory';
+import Login from './components/Login';
+import Book from './components/Book';
+import Admin from './components/Admin';
+import BookingHistory from './components/BookingHistory';
 function App() {
   return (
     <BookingProvider>

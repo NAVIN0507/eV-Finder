@@ -14,12 +14,14 @@ app.use(cors({
   origin: `${process.env.FRONTEND_URL}`,
   credentials: true,
 }));
+
 app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your_secret_key',
   resave: false,
   saveUninitialized: true,
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'; // Import useState
 import './Book.css';
-import { BookingContext } from './context/BookingContext';
-import car from "./assets/car.png";
+import { BookingContext } from '../context/BookingContext';
+import car from "../assets/car.png";
 import Navbar from "./Navbar";
 
 const Book = () => {
@@ -155,7 +155,10 @@ const Book = () => {
                 <input type="text" id="staffid" name="staffid" value={staffId} onChange={(e) => setStaffId(e.target.value)} placeholder="Enter your ID" required />
               </div>
 
-              
+              <div className="common">
+                <label htmlFor="reason">Phone</label>
+                <input type="text" id="reason" name="reason" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Enter reason for booking" required />
+              </div>
               
               {/* <div className="common checkbox">
                 <label className="important">Important</label>
@@ -229,6 +232,8 @@ const Book = () => {
                 <label htmlFor="reason">Reason</label>
                 <input type="text" id="reason" name="reason" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Enter reason for booking" required />
               </div>
+
+             
             </div>   
           </div>
 

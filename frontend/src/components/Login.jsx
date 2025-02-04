@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 import './Login.css';
-import loginImage from './assets/login_image.png';
-import logo from './assets/logo.png';
-import googleLogo from './assets/google_logo.png';
-import openEye from './assets/open_eye.png';
-import closeEye from './assets/close_eye.png';
+import loginImage from '../assets/login_image.png';
+import logo from '../assets/logo.png';
+import googleLogo from '../assets/google_logo.png';
+import openEye from '../assets/open_eye.png';
+import closeEye from '../assets/close_eye.png';
 import {useNavigate } from 'react-router-dom';
 
 const Login = () => {

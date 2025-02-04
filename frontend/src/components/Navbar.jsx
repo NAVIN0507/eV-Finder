@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 // import { BsPersonCircle } from "react-icons/bs";
 import { FaHistory } from "react-icons/fa";
 import './Navbar.css';
-import { BookingContext } from './context/BookingContext';
+import { BookingContext } from '../context/BookingContext';
 
 const Navbar = () => {
   const {fname,setFname,photo,setPhoto}=useContext(BookingContext);
